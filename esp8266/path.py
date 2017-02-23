@@ -1,3 +1,4 @@
+# This is supposed to be a heart
 step = 25
 while True:
 	move( -step, step )
@@ -14,6 +15,7 @@ while True:
 
 	move( 6*step, 0 )
 
+# Tiny squares
 while True:
 	move( 10, 0 )
 	move( 0, 10 )
@@ -22,17 +24,8 @@ while True:
 	move( 20, 20 )
 	move( 0, -10 )
 
-while True:
-move( 50, 0 )
-move( 0, 50 )
-move( -50, 0 )
-move( 0, -50 )
-move( 50, 50 )
-move( 0, -50 )
-
-
+# Draw pixels and gradients? Not really working
 pixelSize = 20
-
 def drawPixel( fill, size ):
 	n = size / fill
 	for index in range( 0, n ):
