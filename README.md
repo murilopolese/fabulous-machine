@@ -20,7 +20,16 @@ gondola / pen holder.
 The best instructions are written in your heart and you can watch them in your
 dreams.
 
-Boom! 
+Boom!
+
+## Flashing the flash-firmware
+
+I love this expression. In fact, after you have ~flashing the MicroPython firmware~
+(so hacker now) you just need to transfer the `boot.py`, `main.py` and just if you
+want the `port_config.py`.
+
+Set the wifi configuration on `boot.py` and the `port_config.py` for the webrepl
+password.
 
 ## Tooling
 
