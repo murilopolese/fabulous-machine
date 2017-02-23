@@ -33,8 +33,8 @@ password.
 
 ## Tooling
 
-I also made a tool to help creating the coordinates you need to feed the machine
-and it's at `app/drawing.html` but watch out, this is still very experimental.
+Visit this [Fabulous Machine Website](http://fabulous-machine.herokuapp.com) to
+draw your ideas and get the machine instructions!
 
 ## How to operate the machine
 
