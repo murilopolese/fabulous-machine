@@ -1,6 +1,5 @@
-import machine
-import time
-import math
+from machine import Pin
+from time import sleep
 
 sequence = [
 	[ 1, 0, 0, 0 ],
@@ -13,16 +12,16 @@ sequence = [
 	[ 1, 0, 0, 1 ]
 ]
 
-left1 = machine.Pin( 16, machine.Pin.OUT )
-left2 = machine.Pin( 5, machine.Pin.OUT )
-left3 = machine.Pin( 4, machine.Pin.OUT )
-left4 = machine.Pin( 0, machine.Pin.OUT )
-right1 = machine.Pin( 14, machine.Pin.OUT )
-right2 = machine.Pin( 12, machine.Pin.OUT )
-right3 = machine.Pin( 13, machine.Pin.OUT )
-right4 = machine.Pin( 15, machine.Pin.OUT )
+left1 = Pin( 16, Pin.OUT )
+left2 = Pin( 5, Pin.OUT )
+left3 = Pin( 4, Pin.OUT )
+left4 = Pin( 0, Pin.OUT )
+right1 = Pin( 14, Pin.OUT )
+right2 = Pin( 12, Pin.OUT )
+right3 = Pin( 13, Pin.OUT )
+right4 = Pin( 15, Pin.OUT )
 
-speed = 0.01
+speed = 0.005
 
 def get_line(start, end):
 	"""Bresenham's Line Algorithm
@@ -87,7 +86,7 @@ def runSequence( pin1, pin2, pin3, pin4, speed ):
 		pin2.value( seq[ 1 ] )
 		pin3.value( seq[ 2 ] )
 		pin4.value( seq[ 3 ] )
-		time.sleep( speed );
+		sleep( speed );
 
 def cw( pin1, pin2, pin3, pin4, speed ):
 	runSequence( pin4, pin3, pin2, pin1, speed )
@@ -145,6 +144,10 @@ def move( x, y ):
 				moveMotorRight(1);
 				moveMotorLeft(-1);
 
-def drawPath( path ):
-	for p in path:
-		move( p[0], p[1] )
+def drawFromFile():
+	with open( 'path.txt', 'r' ) as file:
+		total = sum(1 for line in open('path.txt') )
+		for i, line in enumerate( file ):
+			p = [ int(line.split(',')[0]), int(line.split(',')[1]) ]
+			print( i, p )
+			move( p[0], p[1] )
