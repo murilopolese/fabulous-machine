@@ -12,6 +12,15 @@ sequence = [
 	[ 1, 0, 0, 1 ]
 ]
 
+up = ( 1, 0 )
+down = ( -1, 0 )
+left = ( 0, 1 )
+right = ( 0, - 1 )
+upLeft = ( up[0] + left[0], up[1] + left[1] )
+upRight = ( up[0] + right[0], up[1] + right[1] )
+downLeft = ( down[0] + left[0], down[1] + left[1] )
+downRight = ( down[0] + right[0], down[1] + right[1] )
+
 left1 = Pin( 16, Pin.OUT )
 left2 = Pin( 5, Pin.OUT )
 left3 = Pin( 4, Pin.OUT )
@@ -22,6 +31,7 @@ right3 = Pin( 13, Pin.OUT )
 right4 = Pin( 15, Pin.OUT )
 
 speed = 0.005
+scale = 2
 
 def get_line(start, end):
 	"""Bresenham's Line Algorithm
@@ -111,43 +121,43 @@ def move( x, y ):
 	for index, point in enumerate( points ):
 		if index > 0:
 			d = ( point[0] - points[index-1][0], point[1] - points[index-1][1] )
-			if d == ( 0, 1 ): # UP
+			if d == up: # UP
 				moveMotorRight(-1);
 				moveMotorLeft(-1);
-			elif d == ( 0, -1 ): # DOWN
+			elif d == down: # DOWN
 				moveMotorRight(1);
 				moveMotorLeft(1);
-			elif d == ( 1, 0 ): # RIGHT
+			elif d == right: # RIGHT
 				moveMotorRight(-1);
 				moveMotorLeft(1);
-			elif d == ( -1, 0 ): # LEFT
+			elif d == left: # LEFT
 				moveMotorRight(1);
 				moveMotorLeft(-1);
-			elif d == ( 1, 1 ): # UP RIGHT
+			elif d == upRight: # UP RIGHT
 				moveMotorRight(-1);
 				moveMotorLeft(-1);
 				moveMotorRight(-1);
 				moveMotorLeft(1);
-			elif d == ( -1, 1 ): # UP LEFT
+			elif d == upLeft: # UP LEFT
 				moveMotorRight(-1);
 				moveMotorLeft(-1);
 				moveMotorRight(1);
 				moveMotorLeft(-1);
-			elif d == ( 1, -1 ): # DOWN RIGHT
+			elif d == downRight: # DOWN RIGHT
 				moveMotorRight(1);
 				moveMotorLeft(1);
 				moveMotorRight(-1);
 				moveMotorLeft(1);
-			elif d == ( -1, -1 ): # DOWN LEFT
+			elif d == downLeft: # DOWN LEFT
 				moveMotorRight(1);
 				moveMotorLeft(1);
 				moveMotorRight(1);
 				moveMotorLeft(-1);
 
-def drawFromFile():
+def draw():
 	with open( 'path.txt', 'r' ) as file:
-		total = sum(1 for line in open('path.txt') )
+		total = sum( 1 for line in open('path.txt') )
 		for i, line in enumerate( file ):
 			p = [ int(line.split(',')[0]), int(line.split(',')[1]) ]
-			print( i, p )
-			move( p[0], p[1] )
+			print( i, total, p )
+			move( p[0]*scale, p[1]*scale )
