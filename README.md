@@ -33,7 +33,7 @@ password.
 
 ## Tooling
 
-Visit this [Fabulous Machine Website](http://fabulous-machine.herokuapp.com) to
+Visit this [Fabulous Machine Website](http://fabulous-machines.herokuapp.com) to
 draw your ideas and get the machine instructions!
 
 ## How to operate the machine
